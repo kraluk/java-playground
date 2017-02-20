@@ -8,12 +8,12 @@ import lombok.extern.slf4j.Slf4j;
  * @author lukasz
  */
 @Slf4j
-public class DeadLock {
+public final class DeadLock {
 
-    private static final Object resource1 = new Object();
-    private static final Object resource2 = new Object();
+    private static final Object RESOURCE_1 = new Object();
+    private static final Object RESOURCE_2 = new Object();
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Thread threadOne = new Thread(new ThreadOne(), "ThreadOne");
         Thread threadTwo = new Thread(new ThreadTwo(), "ThreadTwo");
 
@@ -23,13 +23,13 @@ public class DeadLock {
         log.info("Threads started!");
     }
 
-    private static class ThreadOne implements Runnable {
+    private static final class ThreadOne implements Runnable {
 
         @Override
         public void run() {
 
-            synchronized (resource2) {
-                log.info("'{}': locked 'resource2'.", Thread.currentThread().getName());
+            synchronized (RESOURCE_2) {
+                log.info("'{}': locked 'RESOURCE_2'.", Thread.currentThread().getName());
 
                 try {
                     Thread.sleep(10);
@@ -37,20 +37,20 @@ public class DeadLock {
                     log.error("Exception occurred!", e);
                 }
 
-                synchronized (resource1) {
-                    log.info("'{}': locked 'resource1'.", Thread.currentThread().getName());
+                synchronized (RESOURCE_1) {
+                    log.info("'{}': locked 'RESOURCE_1'.", Thread.currentThread().getName());
                 }
             }
         }
     }
 
-    private static class ThreadTwo implements Runnable {
+    private static final class ThreadTwo implements Runnable {
 
         @Override
         public void run() {
 
-            synchronized (resource1) {
-                log.info("'{}': locked 'resource1'.", Thread.currentThread().getName());
+            synchronized (RESOURCE_1) {
+                log.info("'{}': locked 'RESOURCE_1'.", Thread.currentThread().getName());
 
                 try {
                     Thread.sleep(10);
@@ -58,8 +58,8 @@ public class DeadLock {
                     log.error("Exception occurred!", e);
                 }
 
-                synchronized (resource2) {
-                    log.info("'{}': locked 'resource2'.", Thread.currentThread().getName());
+                synchronized (RESOURCE_2) {
+                    log.info("'{}': locked 'RESOURCE_2'.", Thread.currentThread().getName());
                 }
             }
         }

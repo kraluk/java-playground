@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author lukasz
  */
 @Slf4j
-public class TryReturn {
+public final class TryExperiments {
 
     /**
      * Checks the behaviour of try/catch/finally mechanism when returning value in the try closure

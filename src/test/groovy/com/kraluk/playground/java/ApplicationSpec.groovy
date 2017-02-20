@@ -5,11 +5,10 @@ import spock.lang.Specification
 class ApplicationSpec extends Specification {
 
     def "test specification"() {
-        expect:
-            true == (one && two)
+        when:
+            Application.main()
 
-        where:
-            one  | two
-            true | true
+        then:
+            noExceptionThrown()
     }
 }

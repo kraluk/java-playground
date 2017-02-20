@@ -12,7 +12,7 @@ import static com.kraluk.playground.java.concurrency.lock.LiveLock.SLEEP_TIME;
  * @author lukasz
  */
 @Slf4j
-public class LiveLock {
+public final class LiveLock {
 
     static final long SLEEP_TIME = 1000;
 
@@ -35,7 +35,7 @@ public class LiveLock {
 }
 
 @Slf4j
-class Pedestrian implements Runnable {
+final class Pedestrian implements Runnable {
 
     private Object left;
     private Object right;

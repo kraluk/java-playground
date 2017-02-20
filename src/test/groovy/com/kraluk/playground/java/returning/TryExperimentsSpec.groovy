@@ -2,7 +2,7 @@ package com.kraluk.playground.java.returning
 
 import spock.lang.Specification
 
-class TryReturnSpec extends Specification {
+class TryExperimentsSpec extends Specification {
 
     def "try and return in the given block"() {
 
@@ -10,7 +10,7 @@ class TryReturnSpec extends Specification {
             def input = 2
 
         when:
-            def result = TryReturn.incrementAndReturn(input)
+            def result = TryExperiments.incrementAndReturn(input)
 
         then:
             result == 3 // not 4

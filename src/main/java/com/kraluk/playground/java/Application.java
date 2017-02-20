@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
  * @author lukasz
  */
 @Slf4j
-public class Application {
+public final class Application {
 
     public static void main(String[] args) {
-      log.info("Application started.");
+        log.info("Application started.");
     }
 }
