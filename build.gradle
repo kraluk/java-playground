@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'groovy'
     id 'idea'
+    id 'com.ofg.uptodate' version '1.6.3'
 }
 
 // Project settings
@@ -11,6 +12,12 @@ version = '1.0.0-SNAPSHOT'
 // Java version
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
+
+uptodate {
+    connectionTimeout = 10000
+}
+
+check.dependsOn 'uptodate'
 
 repositories {
     mavenLocal()
@@ -40,5 +47,5 @@ test {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.0'
 }
