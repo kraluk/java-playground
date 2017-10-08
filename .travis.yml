@@ -1,13 +1,14 @@
 language: java
 sudo: required
-dist: trusty
+dist: precise
+group: edge
 
 addons:
   apt:
     packages:
-      - oracle-java8-installer
+      - oracle-java9-installer
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 
 branches:
   only:
