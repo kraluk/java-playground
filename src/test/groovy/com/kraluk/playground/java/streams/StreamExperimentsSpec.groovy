@@ -6,9 +6,11 @@ class StreamExperimentsSpec extends Specification {
 
     def "should thrown ConcurrentModificationException"() {
         when:
-            StreamExperiments.modifyStream()
+        StreamExperiments.modifyStream()
 
         then:
-            thrown(ConcurrentModificationException)
+        noExceptionThrown()
+
+        // thrown(ConcurrentModificationException) // only when Java 8 is used
     }
 }

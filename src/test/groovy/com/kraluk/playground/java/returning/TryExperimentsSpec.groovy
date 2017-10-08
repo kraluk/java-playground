@@ -7,12 +7,12 @@ class TryExperimentsSpec extends Specification {
     def "try and return in the given block"() {
 
         given:
-            def input = 2
+        def input = 2
 
         when:
-            def result = TryExperiments.incrementAndReturn(input)
+        def result = TryExperiments.incrementAndReturn(input)
 
         then:
-            result == 3 // not 4
+        result == 3 // not 4
     }
 }

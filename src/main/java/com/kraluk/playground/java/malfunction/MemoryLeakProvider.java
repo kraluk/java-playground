@@ -1,7 +1,9 @@
 package com.kraluk.playground.java.malfunction;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,8 +15,8 @@ import java.util.Random;
  *
  * @author lukasz
  */
-@Slf4j
 public final class MemoryLeakProvider {
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final int CAPACITY = 1_000_000_000;
     private static final List<Double> LIST = new ArrayList<>(CAPACITY);

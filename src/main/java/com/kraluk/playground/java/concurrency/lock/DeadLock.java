@@ -1,14 +1,17 @@
 package com.kraluk.playground.java.concurrency.lock;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 /**
  * Simple DeadLock example
  *
  * @author lukasz
  */
-@Slf4j
 public final class DeadLock {
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final Object RESOURCE_1 = new Object();
     private static final Object RESOURCE_2 = new Object();

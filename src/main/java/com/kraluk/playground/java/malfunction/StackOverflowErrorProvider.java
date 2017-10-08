@@ -1,14 +1,17 @@
 package com.kraluk.playground.java.malfunction;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 /**
  * Simple {@link StackOverflowError} provider
  *
  * @author lukasz
  */
-@Slf4j
-public final class StackOverflowProvider {
+public final class StackOverflowErrorProvider {
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public void provide() {
         log.info("Attempting to provide a StackOverflowError...");

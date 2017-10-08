@@ -10,8 +10,8 @@ group = 'com.kraluk.playground.java'
 version = '1.0.0-SNAPSHOT'
 
 // Java version
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_9
+targetCompatibility = JavaVersion.VERSION_1_9
 
 uptodate {
     connectionTimeout = 10000
@@ -28,10 +28,7 @@ repositories {
 dependencies {
 
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
-
-    // Additional stuff
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
     // Test dependencies
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.12'
@@ -47,5 +44,5 @@ test {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
+    gradleVersion = '4.2.1'
 }

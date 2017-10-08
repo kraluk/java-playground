@@ -1,8 +1,9 @@
 package com.kraluk.playground.java.concurrency.lock;
 
-import lombok.AccessLevel;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 import static com.kraluk.playground.java.concurrency.lock.LiveLock.SLEEP_TIME;
 
@@ -11,20 +12,22 @@ import static com.kraluk.playground.java.concurrency.lock.LiveLock.SLEEP_TIME;
  *
  * @author lukasz
  */
-@Slf4j
 public final class LiveLock {
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     static final long SLEEP_TIME = 1000;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Object left = "left";
         Object right = "right";
 
         // One's left is one's left
         Pedestrian one = new Pedestrian(left, right, 0);
+        log.info("Created First Pedestrian.");
 
         // One's left is two's right, so have to swap order
         Pedestrian two = new Pedestrian(right, left, 1);
+        log.info("Created Second Pedestrian.");
 
         one.setOther(two);
         two.setOther(one);
@@ -34,15 +37,14 @@ public final class LiveLock {
     }
 }
 
-@Slf4j
 final class Pedestrian implements Runnable {
+    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private Object left;
     private Object right;
 
     private Object current;
 
-    @Setter(AccessLevel.PACKAGE)
     private Pedestrian other;
 
     Pedestrian(Object left, Object right, int firstDirection) {
@@ -65,6 +67,10 @@ final class Pedestrian implements Runnable {
 
     private Object getDirection() {
         return current;
+    }
+
+    void setOther(Pedestrian other) {
+        this.other = other;
     }
 
     private Object getOppositeDirection() {
