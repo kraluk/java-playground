@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-import static com.kraluk.playground.java.concurrency.lock.LiveLock.SLEEP_TIME;
-
 /**
  * Simple LiveLock example
  *
@@ -15,7 +13,7 @@ import static com.kraluk.playground.java.concurrency.lock.LiveLock.SLEEP_TIME;
 public final class LiveLock {
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    static final long SLEEP_TIME = 1000;
+    private static final long SLEEP_TIME = 1000;
 
     public static void main(String[] args) {
         Object left = "left";
@@ -35,60 +33,60 @@ public final class LiveLock {
         new Thread(one, " First").start();
         new Thread(two, "Second").start();
     }
-}
 
-final class Pedestrian implements Runnable {
-    private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+    final static class Pedestrian implements Runnable {
+        private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private Object left;
-    private Object right;
+        private Object left;
+        private Object right;
 
-    private Object current;
+        private Object current;
 
-    private Pedestrian other;
+        private Pedestrian other;
 
-    Pedestrian(Object left, Object right, int firstDirection) {
-        this.left = left;
-        this.right = right;
+        Pedestrian(Object left, Object right, int firstDirection) {
+            this.left = left;
+            this.right = right;
 
-        if (firstDirection == 0) {
-            current = this.left;
-        } else {
-            current = this.right;
+            if (firstDirection == 0) {
+                current = this.left;
+            } else {
+                current = this.right;
+            }
         }
-    }
 
-    private void switchDirection() throws InterruptedException {
-        Thread.sleep(SLEEP_TIME);
-        current = getOppositeDirection();
+        private void switchDirection() throws InterruptedException {
+            Thread.sleep(SLEEP_TIME);
+            current = getOppositeDirection();
 
-        log.info("'{}' is stepping aside.", Thread.currentThread().getName());
-    }
-
-    private Object getDirection() {
-        return current;
-    }
-
-    void setOther(Pedestrian other) {
-        this.other = other;
-    }
-
-    private Object getOppositeDirection() {
-        if (current.equals(left)) {
-            return right;
-        } else {
-            return left;
+            log.info("'{}' is stepping aside.", Thread.currentThread().getName());
         }
-    }
 
-    @Override
-    public void run() {
-        while (getDirection().equals(other.getDirection())) {
-            try {
-                switchDirection();
-                Thread.sleep(SLEEP_TIME);
-            } catch (InterruptedException e) {
-                log.error("Exception occurred!", e);
+        private Object getDirection() {
+            return current;
+        }
+
+        void setOther(Pedestrian other) {
+            this.other = other;
+        }
+
+        private Object getOppositeDirection() {
+            if (current.equals(left)) {
+                return right;
+            } else {
+                return left;
+            }
+        }
+
+        @Override
+        public void run() {
+            while (getDirection().equals(other.getDirection())) {
+                try {
+                    switchDirection();
+                    Thread.sleep(SLEEP_TIME);
+                } catch (InterruptedException e) {
+                    log.error("Exception occurred!", e);
+                }
             }
         }
     }

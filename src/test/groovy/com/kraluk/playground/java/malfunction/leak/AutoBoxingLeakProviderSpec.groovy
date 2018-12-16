@@ -1,6 +1,5 @@
-package com.kraluk.playground.java.malfunction
+package com.kraluk.playground.java.malfunction.leak
 
-import com.kraluk.playground.java.malfunction.leak.AutoBoxingLeakProvider
 import spock.lang.Specification
 
 class AutoBoxingLeakProviderSpec extends Specification {
