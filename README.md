@@ -1,8 +1,6 @@
 # java-playground
 
-[![Build Status](https://travis-ci.org/kraluk/java-playground.svg?branch=master)](https://travis-ci.org/kraluk/java-playground)
-
-**Java 9 is required to build and run the project**
+[![CircleCI](https://circleci.com/gh/kraluk/java-playground/tree/master.svg?style=svg)](https://circleci.com/gh/kraluk/java-playground/tree/master)
 
 The project contains some tricky and twisted cases which can be implemented with Java, but there are also some classic ones, which could be quite interesting for new Java developers and not only.
 
