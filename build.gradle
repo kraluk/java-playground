@@ -10,8 +10,8 @@ group = 'com.kraluk.playground.java'
 version = '1.0.0-SNAPSHOT'
 
 // Java version
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 uptodate {
     connectionTimeout = 10000
@@ -31,8 +31,8 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
     // Test dependencies
-    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.12'
-    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.1-groovy-2.4'
+    testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.4'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.5'
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3'
 }
 
@@ -43,6 +43,6 @@ test {
     }
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.2.1'
+wrapper {
+    gradleVersion = '5.0'
 }

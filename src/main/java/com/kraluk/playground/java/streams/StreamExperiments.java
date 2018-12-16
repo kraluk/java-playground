@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,5 +33,28 @@ public final class StreamExperiments {
         strings.add("XXX");
 
         stream.forEach(log::info);
+    }
+
+    static class Calculation {
+        private static final List<Integer> INTEGERS = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        public static int calculate() {
+            int result = 0;
+
+            for (int value : INTEGERS) {
+                if (value % 2 == 0) {
+                    result += value * 2;
+                }
+            }
+
+            return result;
+        }
+
+        public static int calculateWithStream() {
+            return INTEGERS.stream()
+                .filter(e -> e % 2 == 0)
+                .mapToInt(e -> e * 2)
+                .sum();
+        }
     }
 }

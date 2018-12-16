@@ -1,4 +1,4 @@
-package com.kraluk.playground.java.malfunction;
+package com.kraluk.playground.java.malfunction.leak;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,14 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Memory Leak provider
- * <p>
- * <b>Currently just a PoC</b>
- *
- * @author lukasz
- */
-public final class MemoryLeakProvider {
+public class DataStructerLeakProvider implements MemoryLeakProvider {
     private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private static final int CAPACITY = 1_000_000_000;
@@ -23,6 +16,7 @@ public final class MemoryLeakProvider {
 
     private Random random = new Random();
 
+    @Override
     public void provide() throws InterruptedException {
         log.info("Attempting to fulfil the list...");
 
