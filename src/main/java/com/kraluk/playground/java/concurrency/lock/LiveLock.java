@@ -35,7 +35,9 @@ public final class LiveLock {
     }
 
     final static class Pedestrian implements Runnable {
-        private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+        private static final Logger
+            log =
+            LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
         private Object left;
         private Object right;
