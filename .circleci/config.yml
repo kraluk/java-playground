@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
 
@@ -11,18 +11,19 @@ jobs:
 
       - checkout
 
-      - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
-          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: java-playground-{{ checksum "build.gradle" }}
+      - restore_cache:
+          keys:
+            - jp-dependencies-{{ checksum "build.gradle" }}
+            - jp-dependencies-
 
       - run: ./gradlew dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
-          key: java-playground-{{ checksum "build.gradle" }}
+          key: jp-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew build
+      - run: ./gradlew test
 
       - store_test_results: # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
           # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
